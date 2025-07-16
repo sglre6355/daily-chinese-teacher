@@ -81,7 +81,9 @@ func (ws *WordService) GetTodaysWordWithTranslation(ctx context.Context) (string
 		return "", fmt.Errorf("translating word: %w", err)
 	}
 
-	return translation, nil
+	result := "## 今日の中国語\n" + fmt.Sprintf("単語: %s\n", wordResponse.Payload.WordDay.Text) + translation
+
+	return result, nil
 }
 
 func (ws *WordService) fetchWordOfDay(ctx context.Context, date string) (*WordOfDayResponse, error) {
